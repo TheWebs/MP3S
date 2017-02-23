@@ -4,7 +4,7 @@
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       Title="MP3S"
                       Height="410.784"
-                      Width="646.569" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+                      Width="646.569" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Closing="MetroWindow_Closing" LocationChanged="MetroWindow_LocationChanged">
     <Grid>
         <Button x:Name="button" Content="Add folder" HorizontalAlignment="Left" Height="22" Margin="23,16,0,0" VerticalAlignment="Top" Width="89" Click="button_Click" Cursor="Hand"/>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="161" Margin="23,46,0,0" VerticalAlignment="Top" Width="194" BorderBrush="#FF2E2E2E" BorderThickness="2"/>
@@ -13,9 +13,10 @@
         <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="265" Margin="222,46,0,0" VerticalAlignment="Top" Width="396" BorderThickness="2"/>
         <Label x:Name="label" Content="Files" HorizontalAlignment="Left" Height="31" Margin="222,10,0,0" VerticalAlignment="Top" Width="396" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="16"/>
         <CheckBox x:Name="checkBox" Content="List only file names" HorizontalAlignment="Left" Height="31" Margin="23,250,0,0" VerticalAlignment="Top" Width="144"/>
-        <ProgressBar x:Name="prog" HorizontalAlignment="Left" Height="45" Margin="222,327,0,0" VerticalAlignment="Top" Width="396" IsHitTestVisible="True"/>
+        <ProgressBar x:Name="prog" HorizontalAlignment="Left" Height="23" Margin="222,316,0,0" VerticalAlignment="Top" Width="396" IsHitTestVisible="True"/>
         <CheckBox x:Name="checkBox1" Content="Count files" HorizontalAlignment="Left" Height="31" Margin="23,286,0,0" VerticalAlignment="Top" Width="144" IsChecked="True" Unchecked="checkBox1_Unchecked" Checked="checkBox1_Checked"/>
-        <Label x:Name="label1" Content="Files found: " HorizontalAlignment="Left" Height="45" Margin="23,327,0,0" VerticalAlignment="Top" Width="194" VerticalContentAlignment="Center"/>
+        <Label x:Name="label1" Content="Files found: " HorizontalAlignment="Left" Height="28" Margin="222,344,0,0" VerticalAlignment="Top" Width="396" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <CheckBox x:Name="checkBox2" Content="Show debug information" HorizontalAlignment="Left" Margin="23,322,0,0" VerticalAlignment="Top" Width="161" Height="31" Checked="checkBox2_Checked" Unchecked="checkBox2_Unchecked"/>
 
     </Grid>
 </Controls:MetroWindow>

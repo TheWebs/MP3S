@@ -1,0 +1,15 @@
+﻿<Window x:Class="MP3S.Debug"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MP3S"
+        mc:Ignorable="d"
+        Title="Debug" Height="121.008" Width="646.569" ResizeMode="CanMinimize" WindowStyle="None">
+    <Grid>
+        <StackPanel Margin="10" Orientation="Vertical">
+            <RichTextBox x:Name="richTextBox1" HorizontalAlignment="Left" Height="101" VerticalAlignment="Top" Width="627" VerticalScrollBarVisibility="Visible">
+            </RichTextBox>
+        </StackPanel>
+    </Grid>
+</Window>

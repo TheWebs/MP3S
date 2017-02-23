@@ -25,9 +25,11 @@ namespace MP3S
     {
         private List<string> folders;
         private List<string> files;
+        Debug debug;
         public MainWindow()
         {
             InitializeComponent();
+            debug = new Debug();
             folders = new List<string>();
             files = new List<string>();
         }
@@ -38,13 +40,15 @@ namespace MP3S
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
             if(result.ToString() == "Cancel")
             {
-                Console.WriteLine("Aborting add folder...");
+                debug.richTextBox1.AppendText("Aborting add folder...\n");
+                debug.richTextBox1.ScrollToEnd();
                 return;
             }
             int index = dialog.SelectedPath.Split('\\').Length - 1;
             if (dialog.SelectedPath.Split('\\')[index] == "")
             {
-                Console.WriteLine("Path ended with slash, handling it...");
+                debug.richTextBox1.AppendText("Path ended with slash, handling it...\n");
+                debug.richTextBox1.ScrollToEnd();
                 listBox.Items.Add(dialog.SelectedPath.Split('\\')[index - 1]);
                 folders.Add(dialog.SelectedPath);
             }
@@ -53,7 +57,7 @@ namespace MP3S
                 listBox.Items.Add(dialog.SelectedPath.Split('\\')[index]);
                 folders.Add(dialog.SelectedPath);
             }
-            Console.WriteLine("+" + result.ToString() + "+");
+            //Console.WriteLine("+" + result.ToString() + "+");
             
         }
 
@@ -61,7 +65,7 @@ namespace MP3S
         {
             if(listBox.SelectedIndex == -1)
             {
-                Console.WriteLine("No item selected, aborting remove...");
+                debug.richTextBox1.AppendText("No item selected, aborting remove...\n");
                 return;
             }
             folders.RemoveAt(listBox.SelectedIndex);
@@ -75,6 +79,7 @@ namespace MP3S
 
         private async void button2_Click(object sender, RoutedEventArgs e)
         {
+            DateTime start = DateTime.Now;
             changeButtonsState(false);
             prog.IsIndeterminate = true;
             try
@@ -99,6 +104,7 @@ namespace MP3S
             prog.IsIndeterminate = false;
             listFiles();
             changeButtonsState(true);
+            debug.richTextBox1.AppendText("Found " + files.Count + " files in " + (int)DateTime.Now.Subtract(start).TotalMilliseconds + " ms (" + ((double)DateTime.Now.Subtract(start).TotalSeconds).ToString("0.0") + " seconds). An average of " + (int)(files.Count / (DateTime.Now.Subtract(start)).TotalSeconds) + " files per second.\n");
         }
 
         private void changeButtonsState(bool boolean)
@@ -128,14 +134,15 @@ namespace MP3S
             }
             catch (UnauthorizedAccessException ex)
             {
-                Console.WriteLine("Access denied to: " + folder);
+                debug.Dispatcher.BeginInvoke((Action)(() => { debug.richTextBox1.AppendText("[" + DateTime.Now.ToString("HH:mm:ss") + "] Access denied to: " + folder + "\n"); }));
+                debug.Dispatcher.BeginInvoke((Action)(() => { debug.richTextBox1.ScrollToEnd(); }));
             }
             
         }
 
         private void listFiles()
         {
-            if (checkBox1.IsChecked == true)
+            if (checkBox.IsChecked == true)
             {
                 foreach (string file in files)
                 {
@@ -161,6 +168,31 @@ namespace MP3S
         {
             if(label1 != null)
             label1.Visibility = Visibility.Visible;
+        }
+
+        private void checkBox2_Checked(object sender, RoutedEventArgs e)
+        {
+            debug.Left = this.Left;
+            debug.Top = this.Top + (this.ActualHeight);
+            debug.Show();
+            this.Focus();
+        }
+
+        private void checkBox2_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if(checkBox2 != null)
+            debug.Hide();
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void MetroWindow_LocationChanged(object sender, EventArgs e)
+        {
+            debug.Left = this.Left;
+            debug.Top = this.Top + (this.ActualHeight );
         }
     }
 }

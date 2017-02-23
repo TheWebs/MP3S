@@ -17,3 +17,6 @@ c:\users\franc\documents\visual studio 2015\Projects\MP3S\MP3S\obj\Debug\MP3S.ex
 c:\users\franc\documents\visual studio 2015\Projects\MP3S\MP3S\obj\Debug\MP3S.pdb
 c:\users\franc\documents\visual studio 2015\Projects\MP3S\MP3S\bin\Debug\Ookii.Dialogs.Wpf.dll
 c:\users\franc\documents\visual studio 2015\Projects\MP3S\MP3S\bin\Debug\Ookii.Dialogs.Wpf.xml
+C:\Users\franc\documents\visual studio 2015\Projects\MP3S\MP3S\obj\Debug\Debug.g.cs
+C:\Users\franc\documents\visual studio 2015\Projects\MP3S\MP3S\obj\Debug\MP3S_MarkupCompile.lref
+C:\Users\franc\documents\visual studio 2015\Projects\MP3S\MP3S\obj\Debug\Debug.baml
